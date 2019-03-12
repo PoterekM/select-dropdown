@@ -58,6 +58,7 @@ const customStyles = {
     position: 'relative',
     transition: 'all 100ms',
     boxSizing: 'borderBox',
+    textTransform: 'uppercase',
   }),
 
   // dropdownIndicator: (provided, state) => ({
