@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Select from 'react-select';
 
-
 const Container = styled.div`
   /* text-align: right; */
   box-sizing: border-box;
@@ -24,9 +23,15 @@ const customStyles = {
   option: (provided, state) => ({
     ...provided,
     borderBottom: '1px solid #E1E1E1',
-    color: state.isSelected ? '#203A60' : '#04955F',
-    border: state.isSelected ? '1px solid #203A60' : 'none',
-    padding: 5,
+    // color: state.isSelected ? '#203A60' : '#04955F',
+    color: state.isFocused ? '#203A60' : '#04955F',
+    padding: '5',
+    fontSize: '12px',
+    marginRight: '5px',
+    paddingRight: '1rem',
+    //changing background color breaks up and down functionality
+    // backgroundColor: 'white',
+
   }),
 
   // clearIndicator: (provided, state) => ({
@@ -34,7 +39,8 @@ const customStyles = {
   //   // no noticable change
   // }),
   
-  container: () => ({
+  container: (provided) => ({
+    ...provided,
     position: 'relative',
     boxSizing: 'borderBox',
 //this is the outside container that the option items are nested in
@@ -42,23 +48,25 @@ const customStyles = {
 
   control: (provided) => ({
     ...provided,
-    color: 'red',
-    backgroundColor: 'green',
     alignItems: 'center',
-    borderColor: 'hsl(0,0%,80%)',
-    borderRadius: '0px',
+    borderColor: '1px solid #E1E1E1',
+    borderRadius: '2px',
     borderStyle: 'solid',
-    borderWidth: '1px',
+    borderWidth: '.07rem',
     cursor: 'default',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'spaceBetween',
-    minHeight: '38px',
-    outline: '0 !important',
+    minHeight: '.75rem',
+    // outline: '0 !important',
     position: 'relative',
     transition: 'all 100ms',
     boxSizing: 'borderBox',
     textTransform: 'uppercase',
+    borderColor: 'hsl(0,0%,70%)',
+    fontSize: '14px',
+    minWidth: '20rem',
+
   }),
 
   // dropdownIndicator: (provided, state) => ({
@@ -120,30 +128,35 @@ const customStyles = {
   //   ...provided,
   // }),
 
-  // menu: (provided, state) => ({
-  //   //This is the background color to the menu items
-    // backgroundColor: '#DEEBFF',
-    // color: 'blue',
-    // cursor: 'default',
-    // display: 'block',
-    // fontSize: 'inherit',
-    // padding: '20px',
-    // width: '100%',
-    // userSelect: 'none',
-    // boxSizing: 'borderBox',
-    // borderBottom: '1px dotted pink',
-  //   ...provided,
-  // }),
+  menu: (provided, state) => ({
+    //This is the background color to the menu items
+    ...provided,
+    margin: '0',
+    backgroundColor: 'white',
+    cursor: 'default',
+    display: 'block',
+    fontSize: 'inherit',
+    width: '100%',
+    userSelect: 'none',
+    boxSizing: 'borderBox',
+    boxShadow: 'none',
+    borderRadius: '0',
+    borderLeft: '1px solid #E1E1E1',
+    borderRight: '1px solid #E1E1E1',
 
-  // menuList: (provided, state) => ({
-  //   maxHeight: '300px',
-  //   overflowY: 'auto',
-  //   paddingBottom: '4px',
-  //   paddingTop: '4px',
-  //   position: 'relative',
-  //   boxSizing: 'borderBox',
-  //   ...provided,
-  // }),
+  }),
+
+  menuList: (provided, state) => ({
+    ...provided,
+    maxHeight: '300px',
+    overflowY: 'auto',
+    paddingBottom: '0px',
+    paddingTop: '0px',
+    position: 'relative',
+    boxSizing: 'borderBox',
+    borderRadius: '0',
+    boxShadow: 'none',
+  }),
 
   // menuPortal: (provided, state) => ({
   //   //no distinct change given
@@ -171,17 +184,16 @@ const customStyles = {
   // }),
 
   // option: (provided, state) => ({
-  //   // ...provided,
-  //   // // THIS IS EACH INDIVIDUAL OPTION ELEMENT
-  //   // backgroundColor: 'transparent',
-  //   // color: 'inherit',
-  //   // cursor: 'default',
-  //   // display: 'block',
-  //   // fontSize: 'inherit',
-  //   // padding: '8px 12px',
-  //   // width: '100%',
-  //   // userSelect: 'none',
-  //   // boxSizing: 'borderBox',
+  //   ...provided,
+  //   // THIS IS EACH INDIVIDUAL OPTION ELEMENT
+  
+  //   cursor: 'default',
+  //   display: 'block',
+  //   fontSize: 'inherit',
+  //   padding: '8px 12px',
+  //   width: '100%',
+  //   userSelect: 'none',
+  //   boxSizing: 'borderBox',
   // }),
 
   // placeholder: (provided, state) => ({
@@ -200,18 +212,18 @@ const customStyles = {
   //   ...provided,
   // }),
 
-  // valueContainer: (provided, state) => ({
-  //   ///background to `select client` container
-  //   ...provided,
-  //   alignItems: 'center',
-  //   display: 'flex',
-  //   flex: '1',
-  //   flexWrap: 'wrap',
-  //   padding: '2px 8px',
-  //   position: 'relative',
-  //   overflow: 'hidden',
-  //   boxSizing: 'borderBox',
-  // }),
+  valueContainer: (provided, state) => ({
+    ///background to `select client` container
+    ...provided,
+    alignItems: 'center',
+    display: 'flex',
+    flex: '1',
+    flexWrap: 'wrap',
+    padding: '2px 8px',
+    position: 'relative',
+    overflow: 'hidden',
+    boxSizing: 'borderBox',
+  }),
  
 }
 
@@ -227,7 +239,7 @@ class StyledDropdown extends Component {
           options={options}
           styles={customStyles}
           placeholder={'select client'}
-          // menuIsOpen={true}
+          menuIsOpen={true}
         />
       </Container>
 

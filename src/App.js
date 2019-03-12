@@ -8,7 +8,7 @@ const Container = styled.div`
   box-sizing: border-box;
   text-align: right;
   margin-right: 30px;
- 
+  background-color: white;
 `;
 
 class App extends Component {
