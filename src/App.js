@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Dropdown from './Dropdown.js';
+import StyledDropdown from './StyledDropdown.js';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  box-sizing: border-box;
+  text-align: right;
+  margin-right: 30px;
+ 
+`;
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-        <p>Hello!</p>
-        <Dropdown/>
-        </header>
-      </div>
-
+      
+        <div className="App">
+        <Container>
+          <header className="App-header">
+          <p>Hello!</p>
+            <StyledDropdown />
+          </header>
+        </Container>
+        </div>
+ 
 
     );
   }
